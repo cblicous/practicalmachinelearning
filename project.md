@@ -1,3 +1,6 @@
+
+```{r, message=FALSE}
+
 Loading Data
 setwd("/cousera/")
 
@@ -8,44 +11,61 @@ library(doMC)
 set.seed(56773)
 
 registerDoMC(cores = 4)
+```
 
-# throwing out n/a strings
+throwing out n/a strings
+```{r, message=FALSE}
 trainingRaw <- read.csv("pml-training.csv", na.strings=c("NA","#DIV/0!",""));
-# skipping username etc, "roll_belt" is the first intersting one
+```
+skipping username etc, "roll_belt" is the first intersting one
+```{r, message=FALSE}
 trainingRaw <- trainingRaw[,8:160];
-
 testingRaw <- read.csv("pml-testing.csv", na.strings=c("NA","#DIV/0!",""));
-# skipping username etc, "roll_belt" is the first intersting one
+```
+skipping username etc, "roll_belt" is the first intersting one
+
+```{r, message=FALSE}
 testingRaw <- testingRaw[,8:160];
+```
+searching for near zero variance
 
-# searching for near zero variance
-
+```{r, message=FALSE}
 noVariance <- nearZeroVar(trainingRaw)
-
-#  str(noVariance)
+str(noVariance)
+  ```
  7  10  19  44  45  46  47  48  49  50  51  52  68  71  72  74  75  82  85  94 120 123 124 127 130 132 135 136 137 138 139 140 141 142 143
 -> those coloumns have apparently very little variance
 
-# Removed the ones without Variance
+Removed the ones without Variance
+
+```{r, message=FALSE}
 trainingRawNoVariance <- trainingRaw[,-noVariance]
 testingRawNoVariance <- testingRaw[,-noVariance]
-
+```
 
 # so lots of NA fields are still there
+```{r, message=FALSE}
 str(trainingSet)
+```
 # so next remove the NA Fields
-
+```{r, message=FALSE}
 nonEmptyFields <- names(trainingRawNoVariance[,colSums(is.na(trainingRawNoVariance)) == 0]);
 
 trainingData <- trainingRawNoVariance[,c(nonEmptyFields)];
 
-
+```
 # Choosing random Forrest
+```{r, message=FALSE}
 modelRandomForest <- train(classe ~ ., method="parRF", data=trainingData)
 predict <- predict(modelRandomForest, trainingData)
 # check the training data
+```{r, message=FALSE}
 confMatrix <- confusionMatrix(predict, traindata$classe)
 print(confMatrix$overall)
+```
+
 # now predict
+```{r, message=FALSE}
 prediction <- predict(modelRandomForest, testingRawNoVariance)
 print(prediction)
+```
