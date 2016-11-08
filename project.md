@@ -56,8 +56,8 @@ Random Forst is the one with the best error rate
 modelRandomForest <- train(classe ~ ., method="parRF", data=trainingData)
 predictTraining <- predict(modelRandomForest, trainingData)
 ```
- check the training data / Print accuracy
-  Choosing random Forrest seems to be the best matching one 
+check the training data / Print accuracy
+Choosing random forrest seems to be the best matching one 
  
 ```{r, message=FALSE}
 confMatrix <- confusionMatrix(predictTraining, trainingData$classe)
