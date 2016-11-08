@@ -57,18 +57,20 @@ nonEmptyFields <- names(trainingRawNoVariance[,colSums(is.na(trainingRawNoVarian
 trainingData <- trainingRawNoVariance[,c(nonEmptyFields)];
 
 ```
-# Choosing random Forrest
+ Choosing random Forrest seems to be the best learning one 
+ 
 ```{r, message=FALSE}
 modelRandomForest <- train(classe ~ ., method="parRF", data=trainingData)
-predict <- predict(modelRandomForest, trainingData)
+predictTraining <- predict(modelRandomForest, trainingData)
+```
 # check the training data
 ```{r, message=FALSE}
-confMatrix <- confusionMatrix(predict, traindata$classe)
+confMatrix <- confusionMatrix(predictTraining, traindata$classe)
 print(confMatrix$overall)
 ```
 
-# now predict
+# now predict on testdata
 ```{r, message=FALSE}
-prediction <- predict(modelRandomForest, testingRawNoVariance)
-print(prediction)
+predictionTesing <- predict(modelRandomForest, testingRawNoVariance)
+print(predictionTesing)
 ```
