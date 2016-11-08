@@ -2,17 +2,13 @@ Initialisation of the project, setting the working directory etc
 enabling Multicores, not sure if this helps 
 http://machinelearningmastery.com/tuning-machine-learning-models-using-the-caret-r-package/
 
-
-```{r, message=FALSE}
-
 Loading Data
+```{r, message=FALSE}
 setwd("/cousera/")
-
 
 library(caret)
 library(doMC)
-
-set.seed(56773)
+set.seed(1000)
 
 registerDoMC(cores = 2)
 ```
