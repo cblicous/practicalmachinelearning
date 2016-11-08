@@ -57,10 +57,11 @@ trainingData <- trainingRawNoVariance[,c(nonEmptyFields)];
 modelRandomForest <- train(classe ~ ., method="parRF", data=trainingData)
 predictTraining <- predict(modelRandomForest, trainingData)
 ```
- check the training data
+ check the training data / Print accuracy
 ```{r, message=FALSE}
 confMatrix <- confusionMatrix(predictTraining, trainingData$classe)
 print(confMatrix$overall)
+
 ```
 
  now predict on testdata
@@ -68,6 +69,7 @@ print(confMatrix$overall)
 
 
 predictionTesing <- predict(modelRandomForest, testingRawNoVariance)
+
 print(predictionTesing)
 
 write.table(predictionTesing,file="pred.txt")
