@@ -19,12 +19,14 @@ registerDoMC(cores = 2)
 
 masking the n/a and empty strings, no idea what #DIV/0! stands for but thrown out to
 ```{r, message=FALSE}
-trainingRaw <- read.csv("pml-training.csv", na.strings=c("NA","","#DIV/0!"));
+ignoreStrings <- c("NA","","#DIV/0!")
+trainingRaw <- read.csv("pml-training.csv", na.strings=ignoreStrings);
 ```
 skipping username etc, "roll_belt" is the first intersting one
 ```{r, message=FALSE}
+
 trainingRaw <- trainingRaw[,8:160];
-testingRaw <- read.csv("pml-testing.csv", na.strings=c("NA","#DIV/0!",""));
+testingRaw <- read.csv("pml-testing.csv", na.strings=ignoreStrings);
 ```
 skipping username etc, "roll_belt" is the first intersting one
 
