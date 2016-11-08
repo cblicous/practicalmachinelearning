@@ -69,11 +69,11 @@ print(confMatrix$overall)
 ```{r, message=FALSE}
 
 
-predictionTesing <- predict(modelRandomForest, testingRawNoVariance)
+predictionTesting <- predict(modelRandomForest, testingRawNoVariance)
 
-print(predictionTesing)
+print(predictionTesting)
 
-write.table(predictionTesing,file="pred.txt")
+write.table(predictionTesting,file="pred.txt")
 
 ```
 
