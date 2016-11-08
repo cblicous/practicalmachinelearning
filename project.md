@@ -63,13 +63,13 @@ trainingData <- trainingRawNoVariance[,c(nonEmptyFields)];
 modelRandomForest <- train(classe ~ ., method="parRF", data=trainingData)
 predictTraining <- predict(modelRandomForest, trainingData)
 ```
-# check the training data
+ check the training data
 ```{r, message=FALSE}
 confMatrix <- confusionMatrix(predictTraining, traindata$classe)
 print(confMatrix$overall)
 ```
 
-# now predict on testdata
+ now predict on testdata
 ```{r, message=FALSE}
 predictionTesing <- predict(modelRandomForest, testingRawNoVariance)
 print(predictionTesing)
