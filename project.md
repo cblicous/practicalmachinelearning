@@ -74,3 +74,5 @@ print(confMatrix$overall)
 predictionTesing <- predict(modelRandomForest, testingRawNoVariance)
 print(predictionTesing)
 ```
+
+write.table(prediction,file="pred.txt")
