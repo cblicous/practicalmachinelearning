@@ -1,3 +1,7 @@
+Initialisation of the project, setting the working directory etc
+enabling Multicores, not sure if this helps 
+http://machinelearningmastery.com/tuning-machine-learning-models-using-the-caret-r-package/
+
 
 ```{r, message=FALSE}
 
@@ -10,12 +14,12 @@ library(doMC)
 
 set.seed(56773)
 
-registerDoMC(cores = 4)
+registerDoMC(cores = 2)
 ```
 
-throwing out n/a strings
+masking the n/a and empty strings, no idea what #DIV/0! stands for but thrown out to
 ```{r, message=FALSE}
-trainingRaw <- read.csv("pml-training.csv", na.strings=c("NA","#DIV/0!",""));
+trainingRaw <- read.csv("pml-training.csv", na.strings=c("NA","","#DIV/0!"));
 ```
 skipping username etc, "roll_belt" is the first intersting one
 ```{r, message=FALSE}
@@ -33,8 +37,7 @@ searching for near zero variance
 noVariance <- nearZeroVar(trainingRaw)
 str(noVariance)
   ```
- 7  10  19  44  45  46  47  48  49  50  51  52  68  71  72  74  75  82  85  94 120 123 124 127 130 132 135 136 137 138 139 140 141 142 143
--> those coloumns have apparently very little variance
+those in variable noVariance have apparently very little variance
 
 Removed the ones without Variance
 
