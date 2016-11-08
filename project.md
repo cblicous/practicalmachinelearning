@@ -59,12 +59,14 @@ predictTraining <- predict(modelRandomForest, trainingData)
 ```
  check the training data
 ```{r, message=FALSE}
-confMatrix <- confusionMatrix(predictTraining, traindata$classe)
+confMatrix <- confusionMatrix(predictTraining, trainingData$classe)
 print(confMatrix$overall)
 ```
 
  now predict on testdata
 ```{r, message=FALSE}
+trainingData <- trainingRawNoVariance[,c(nonEmptyFields)];
+
 predictionTesing <- predict(modelRandomForest, testingRawNoVariance)
 print(predictionTesing)
 
