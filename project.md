@@ -64,6 +64,11 @@ confMatrix <- confusionMatrix(predictTraining, trainingData$classe)
 print(confMatrix$overall)
 
 ```
+Confusion Matrix output 
+```{txt}
+Accuracy          Kappa  AccuracyLower  AccuracyUpper   AccuracyNull AccuracyPValue  McnemarPValue 
+1.0000000      1.0000000      0.9998120      1.0000000      0.2843747      0.0000000            NaN 
+```
 
  now predict on testdata
 ```{r, message=FALSE}
