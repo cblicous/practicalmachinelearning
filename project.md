@@ -46,11 +46,11 @@ trainingRawNoVariance <- trainingRaw[,-noVariance]
 testingRawNoVariance <- testingRaw[,-noVariance]
 ```
 
-# so lots of NA fields are still there
+the  NA fields are still there
 ```{r, message=FALSE}
 str(trainingSet)
 ```
-# so next remove the NA Fields
+so next remove the NA Fields
 ```{r, message=FALSE}
 nonEmptyFields <- names(trainingRawNoVariance[,colSums(is.na(trainingRawNoVariance)) == 0]);
 
