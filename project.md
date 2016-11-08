@@ -65,9 +65,9 @@ print(confMatrix$overall)
 
  now predict on testdata
 ```{r, message=FALSE}
-testingData <- testingRawNoVariance[,c(nonEmptyFields)]
 
-predictionTesing <- predict(modelRandomForest, testingData)
+
+predictionTesing <- predict(modelRandomForest, testingRawNoVariance)
 print(predictionTesing)
 
 write.table(predictionTesing,file="pred.txt")
