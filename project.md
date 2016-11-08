@@ -70,7 +70,7 @@ Accuracy          Kappa  AccuracyLower  AccuracyUpper   AccuracyNull AccuracyPVa
 1.0000000      1.0000000      0.9998120      1.0000000      0.2843747      0.0000000            NaN 
 ```
 
- now predict on testdata
+ now predict on testdata and write for the quiz into a file
 ```{r, message=FALSE}
 
 
