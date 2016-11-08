@@ -17,16 +17,12 @@ masking the n/a and empty strings, no idea what #DIV/0! stands for but thrown ou
 ```{r, message=FALSE}
 ignoreStrings <- c("NA","","#DIV/0!")
 trainingRaw <- read.csv("pml-training.csv", na.strings=ignoreStrings);
-```
-skipping username etc, "roll_belt" is the first intersting one
-```{r, message=FALSE}
-
 trainingRaw <- trainingRaw[,8:160];
-testingRaw <- read.csv("pml-testing.csv", na.strings=ignoreStrings);
 ```
 skipping username etc, "roll_belt" is the first intersting one
 
 ```{r, message=FALSE}
+testingRaw <- read.csv("pml-testing.csv", na.strings=ignoreStrings);
 testingRaw <- testingRaw[,8:160];
 ```
 searching for near zero variance
