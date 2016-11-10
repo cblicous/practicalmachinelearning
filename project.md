@@ -55,7 +55,7 @@ trainingData <- trainingRawNoVariance[,c(nonEmptyFields)];
 Calculating the out of Sample error
 ```{r, message=FALSE}
 tmpTrain <- createDataPartition(y = trainingData$classe,
-                               p = 0.75,
+                               p = 0.8,
                                list = F)
 trainingInt <- trainingData[tmpTrain,]
 testingInt <- trainingData[-tmpTrain,]
