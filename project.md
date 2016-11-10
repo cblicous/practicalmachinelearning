@@ -51,6 +51,24 @@ nonEmptyFields <- names(trainingRawNoVariance[,colSums(is.na(trainingRawNoVarian
 trainingData <- trainingRawNoVariance[,c(nonEmptyFields)];
 
 ```
+
+Calculating the out of Sample error
+```{r, message=FALSE}
+tmpTrain <- createDataPartition(y = trainingData$classe,
+                               p = 0.75,
+                               list = F)
+trainingInt <- trainingData[tmpTrain,]
+testingInt <- trainingData[-tmpTrain,]
+
+modelRfOutOfSample <- randomForest(classe ~ ., method="parRF", data = trainingInt)
+
+predictionsOutOfSample <- predict(modelRfOutOfSample, newdata = testingInt)
+
+confusionMatrix(predictionsOutOfSample, testingInt$classe)
+
+```
+
+
 Random Forst is the one with the best error rate
 ```{r, message=FALSE}
 modelRandomForest <- train(classe ~ ., method="parRF", data=trainingData)
@@ -58,7 +76,8 @@ predictTraining <- predict(modelRandomForest, trainingData)
 ```
 check the training data / Print accuracy
 Choosing random forrest seems to be the best matching one 
- 
+
+
 ```{r, message=FALSE}
 confMatrix <- confusionMatrix(predictTraining, trainingData$classe)
 print(confMatrix$overall)
