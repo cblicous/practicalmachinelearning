@@ -38,6 +38,20 @@ testingRawNoVariance &lt;- testingRaw[,-noVariance]
 trainingData &lt;- trainingRawNoVariance[,c(nonEmptyFields)];
 
 </code></pre>
+<p>Calculating the out of Sample error</p>
+<pre><code class="language-{r,">tmpTrain &lt;- createDataPartition(y = trainingData$classe,
+                               p = 0.8,
+                               list = F)
+trainingInt &lt;- trainingData[tmpTrain,]
+testingInt &lt;- trainingData[-tmpTrain,]
+
+modelRfOutOfSample &lt;- randomForest(classe ~ ., method=&quot;parRF&quot;, data = trainingInt)
+
+predictionsOutOfSample &lt;- predict(modelRfOutOfSample, newdata = testingInt)
+
+confusionMatrix(predictionsOutOfSample, testingInt$classe)
+
+</code></pre>
 <p>Random Forst is the one with the best error rate</p>
 <pre><code class="language-{r,">modelRandomForest &lt;- train(classe ~ ., method=&quot;parRF&quot;, data=trainingData)
 predictTraining &lt;- predict(modelRandomForest, trainingData)
