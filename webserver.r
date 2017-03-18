@@ -30,4 +30,18 @@ rook$add(
   }
 )
 
+rook$add(
+     name ="import",
+    app  = function(env) {
+        req <- Rook::Request$new(env)
+        res <- Rook::Response$new()
+        if (!is.null(req$POST())){
+          print("post method")
+          data <- req$POST()[['file']]
+          print(data)
+         
+        }
+        res$finish()
+      })
+  
 rook$browse("summarize")
