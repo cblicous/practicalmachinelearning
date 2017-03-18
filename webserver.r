@@ -32,7 +32,7 @@ rook$add(
 
 
 # test this like 
-# curl -H "Content-Type: application/json" -X POST -d '{"username":"xyz","password":"xyz"}' http://http://127.0.0.1:31751/custom/import
+# curl -H "Content-Type: application/json" -X POST -d '{"username":"xyz","password":"xyz"}' http://127.0.0.1:31751/custom/import
 rook$add(
      name ="import",
     app  = function(env) {
