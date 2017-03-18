@@ -7,6 +7,7 @@ library(jsonlite)
 
 rook <- Rhttpd$new()
 rook$start(quiet=TRUE)
+# print which port we are on
 rook$print()
 
 
