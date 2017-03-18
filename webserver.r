@@ -40,7 +40,11 @@ rook$add(
         res <- Rook::Response$new()
         if (!is.null(req$POST())){
           print("post method")
-          data <- req$POST()[['file']]
+          # for multipart files: 
+          # data <- req$POST()[['file']]
+          # data now contains the json
+          data <- req$POST()
+          # could convert now fromJSON
           print(data)
          
         }
