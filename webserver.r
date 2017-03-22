@@ -45,6 +45,7 @@ rook$add(
           # data now contains the json
           data <- req$POST()
           # could convert now fromJSON
+          # print(fromJSON(names(req$POST())))
           print(data)
          
         }
